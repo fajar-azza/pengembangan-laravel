@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>P </h1>
+    <h1>P ini percobaan untuk Laravel </h1>
 </body>
 </html>
