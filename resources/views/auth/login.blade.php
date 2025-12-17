@@ -49,6 +49,31 @@
                                     <p>Enter your email and password to login</p>
                                     
                                 </div>
+                                @if (session('error'))
+                                    <div style="
+                                            background: #fee2e2;
+                                            color: #991b1b;
+                                            padding: 10px;
+                                            border-radius: 6px;
+                                            margin-bottom: 15px;
+                                        ">{{ session('error') }}
+                                        </div>
+                                @endif
+                                @if ($errors->any())
+    <div style="
+        background: #fef3c7;
+        color: #92400e;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+    ">
+        <ul style="margin:0; padding-left:20px;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
@@ -61,56 +86,10 @@
                                         <input type="text" name="password" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="mb-3">
-                                        <div class="form-check form-check-primary form-check-inline">
-                                            <input class="form-check-input me-3" type="checkbox" id="form-check-default">
-                                            <label class="form-check-label" for="form-check-default">
-                                                Remember me
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
                                 
                                 <div class="col-12">
                                     <div class="mb-4">
                                         <button type="submit" class="btn btn-secondary w-100">SIGN IN</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-12 mb-4">
-                                    <div class="">
-                                        <div class="seperator">
-                                            <hr>
-                                            <div class="seperator-text"> <span>Or continue with</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-sm-4 col-12">
-                                    <div class="mb-4">
-                                        <button class="btn  btn-social-login w-100 ">
-                                            <img src="../src/assets/img/google-gmail.svg" alt="" class="img-fluid">
-                                            <span class="btn-text-inner">Google</span>
-                                        </button>
-                                    </div>
-                                </div>
-    
-                                <div class="col-sm-4 col-12">
-                                    <div class="mb-4">
-                                        <button class="btn  btn-social-login w-100">
-                                            <img src="../src/assets/img/github-icon.svg" alt="" class="img-fluid">
-                                            <span class="btn-text-inner">Github</span>
-                                        </button>
-                                    </div>
-                                </div>
-    
-                                <div class="col-sm-4 col-12">
-                                    <div class="mb-4">
-                                        <button class="btn  btn-social-login w-100">
-                                            <img src="../src/assets/img/twitter.svg" alt="" class="img-fluid">
-                                            <span class="btn-text-inner">Twitter</span>
-                                        </button>
                                     </div>
                                 </div>
 
