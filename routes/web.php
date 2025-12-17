@@ -4,18 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\AuthController;
 
-// Route::get('/dashboard', function () {
-//     return view('admin.pages.dashboard');
-// });
+
 Route::get('/fajar', function () {
     return view('fajar');
 });
 
-//Route::get('/dosen/form',[DosenController::class,'index']);
-
-
-// Route::get('/dashboard', function () {
-//     return view('admin.pages.dashboard');
+// Route::get('/register', function () {
+//     return view('auth.register');
 // });
 
 
@@ -23,6 +18,8 @@ Route::get('/fajar', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('/login',[AuthController::class,'loginpage'])->name('login');
     Route::post('/login',[AuthController::class,'login']);
+    Route::get('/register',[AuthController::class,'registerpage']);
+    Route::post('/register',[AuthController::class,'register']);
 });
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 

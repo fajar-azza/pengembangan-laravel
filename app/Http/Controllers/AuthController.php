@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -33,5 +36,28 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+
+    // dibawah ini fungsi untuk membuat penambahan User
+    public function registerpage()
+    {
+        return view('auth.register');
+    }
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password'=>'required',
+
+        ]);
+    
+    User::create([
+        'name'=>$request->name,
+        'email'=>$request->email,
+        'password'=>hash::make($request->password)
+    ]);
+    return redirect('/login')->with('success','Registrasi berhasil');
+}
 
 }
