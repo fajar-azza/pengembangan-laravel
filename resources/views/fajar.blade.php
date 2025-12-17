@@ -9,9 +9,10 @@
     <h1>P </h1>
     <h2>percobaan tes</h2>
     <h3>apakah bisa</h3>
-    <h3>apakah akan ada konflik</h3>
+    merge konflik
     
     <h1>ini branch baru apakah sudah ada</h1>
-    tes percobaan konflik
+    tes percobaan konflik dari master
+    apakah bisa konflik
 </body>
 </html>
