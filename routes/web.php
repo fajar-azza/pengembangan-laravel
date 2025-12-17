@@ -9,12 +9,8 @@ Route::get('/fajar', function () {
     return view('fajar');
 });
 
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
 
-
-//Route untuk menu login
+//Route untuk menu login dan register
 Route::middleware(['guest'])->group(function () {
     Route::get('/login',[AuthController::class,'loginpage'])->name('login');
     Route::post('/login',[AuthController::class,'login']);
@@ -25,6 +21,7 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 
 
+//Route untuk menu admin yang hanya bisa diakses yang punya login
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.pages.dashboard');
