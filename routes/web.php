@@ -22,18 +22,36 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 
 //Route untuk menu admin yang hanya bisa diakses yang punya login
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
+// Route::middleware(['auth'])->group(function () {
+
+    Route::middleware(['auth','role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('dashboard', function () {
         return view('admin.pages.dashboard');
-        
-    });
+    })->name('dashboard');
+
     Route::get('/dosen',[DosenController::class,'index'])->name('dosen');
     Route::get('/formdosen',[DosenController::class,'create'])->name('form.dosen');
-    Route::post('/storeDosen',[DosenController::class,'store']);
-    Route::get('/destroydosen/{id}',[DosenController::class,'destroy']);
-    Route::get('/editdosen/{id}',[DosenController::class,'edit']);
-    Route::post('/Dosenedit/{id}',[DosenController::class,'update']);
+    Route::post('/storeDosen',[DosenController::class,'store'])->name('store.dosen');
+    Route::get('/destroydosen/{id}',[DosenController::class,'destroy'])->name('destroy.dosen');
+    Route::get('/editdosen/{id}',[DosenController::class,'edit'])->name('edit.dosen');
+    Route::post('/updatedosen/{id}',[DosenController::class,'update'])->name('update.dosen');
     
-});
+    });
+    
+    Route::middleware(['auth', 'role:user'])
+    ->prefix('user')
+    ->group(function () {
+        Route::get('dashboard', function () {
+            return view('user.pages.dashboard');
+            
+        })->name('dashboard');
+        
+    });
+    
+// });
 
  

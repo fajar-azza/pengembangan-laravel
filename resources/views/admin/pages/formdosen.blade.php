@@ -9,7 +9,7 @@
                 <div class="col-xxl-12 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
                     <div class="card mt-3 mb-3">
                         <div class="card-body">
-                            <form action="storeDosen" method="post">
+                            <form action="{{route('admin.store.dosen')}}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <p>Use input <code>type="text"</code>.</p>

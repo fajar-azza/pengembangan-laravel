@@ -44,7 +44,7 @@ class DosenController extends Controller
             'hp'=> $request->hp,
 
         ]);
-        return redirect('/dosen');
+        return redirect()->route('admin.dosen');
     }
 
     /**
@@ -78,7 +78,7 @@ class DosenController extends Controller
         $dosen->hp = $request->hp;
         $dosen->save();
 
-        return redirect('/dosen');
+        return redirect()->route('admin.dosen');
     }
 
     /**
@@ -89,6 +89,6 @@ class DosenController extends Controller
         $dosen = Dosen:: find($id);
         $dosen->delete();
 
-        return redirect('/dosen');
+        return redirect()->route('admin.dosen');
     }
 }

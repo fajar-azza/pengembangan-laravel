@@ -54,7 +54,7 @@
                                         <p>Enter your email and password to login</p>
 
                                     </div>
-                                    @if (session('error'))
+                                    @if ($errors->any())
                                         <div
                                             style="
                                             background: #fee2e2;
@@ -63,18 +63,19 @@
                                             border-radius: 6px;
                                             margin-bottom: 15px;
                                         ">
-                                            {{ session('error') }}
+                                            {{ $errors->first() }}
                                         </div>
                                     @endif
+
                                     @if ($errors->any())
-                                        <div
-                                            style="
+                                        <div style="
                                                     background: #fef3c7;
                                                     color: #92400e;
                                                     padding: 10px;
                                                     border-radius: 6px;
                                                     margin-bottom: 15px;
                                                 ">
+                                            
                                             <ul style="margin:0; padding-left:20px;">
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
@@ -82,6 +83,7 @@
                                             </ul>
                                         </div>
                                     @endif
+
                                     @if (session('success'))
                                         <div style="color:green">
                                             {{ session('success') }}
