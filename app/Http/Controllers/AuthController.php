@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+// use App\Http\Middleware\RoleMiddleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,16 +19,22 @@ class AuthController extends Controller
     //proses untuk Login kedalam Dashboard
     public function login(Request $request)
     {
-        $request->validate([
+        $credentials=$request->validate([
             'email'=>'required|email',
             'password'=>'required'
         ]);
-        $credentials = $request->only('email','password');
         if (Auth::attempt($credentials))
         {
-            return redirect('/dashboard');
+            $request->session()->regenerate();
+
+            if (Auth::user()->role === 'admin'){
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->intended('user.dashboard');
         }
-        return back()->with('error','email atau password salah');
+        return back()->withErrors([
+            'email'=>'email atau password salah',
+        ]);
     }
 
     //fungsi logout

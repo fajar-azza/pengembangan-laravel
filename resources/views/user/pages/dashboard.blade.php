@@ -1,7 +1,7 @@
-@extends('admin.layout.app')
+@extends('user.layout.app')
 @section('content')
 
-
+<h1>INI HALAMAN USER</h1>
     <div class="layout-px-spacing">
 
         <div class="middle-content container-xxl p-0">

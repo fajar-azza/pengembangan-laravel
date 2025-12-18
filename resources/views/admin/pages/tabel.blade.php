@@ -46,9 +46,9 @@
                                             <td>{{ $item->alamat }}</td>
                                             <td>{{ $item->hp }}</td>
                                             <td>
-                                                <a href="destroydosen/{{ $item->id }}"><button
+                                                <a href="{{route('admin.destroy.dosen',$item->id)  }}"><button
                                                         class="btn btn-primary mb-2 me-4 _effect--ripple waves-effect waves-light">HAPUS</button></a>
-                                                |<a href="editdosen/{{ $item->id }}"><button
+                                                |<a href="{{route('admin.edit.dosen', $item->id) }}"><button
                                                         class="btn btn-primary mb-2 me-4 _effect--ripple waves-effect waves-light">EDIT</button></a>
                                             </td>
                                         </tr>

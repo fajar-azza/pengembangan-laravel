@@ -34,7 +34,7 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-12 ">
-                                <form action="../Dosenedit/{{ $dosen->id }}" method="post">
+                                <form action="{{route('admin.update.dosen', $dosen->id) }}" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <p>Use input <code>type="text"</code>.</p>
