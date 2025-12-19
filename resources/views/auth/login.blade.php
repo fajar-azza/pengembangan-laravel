@@ -44,14 +44,19 @@
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
                     <div class="card mt-3 mb-3">
                         <div class="card-body">
+                            <div class="col-4">
+                                        <div class="mb-4">
+                                            <a href="{{route('utama')}}"><button type="submit" class="btn btn-secondary w-100">kembali</button></a>
+                                        </div>
+                                    </div>
                             <form method="POST" action="">
                                 @csrf
 
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
 
-                                        <h2>Sign In</h2>
-                                        <p>Enter your email and password to login</p>
+                                        <h2>MASOKKK</h2>
+                                        <p>Pakai Email dan Password yaa say...</p>
 
                                     </div>
                                     @if ($errors->any())
@@ -67,22 +72,6 @@
                                         </div>
                                     @endif
 
-                                    @if ($errors->any())
-                                        <div style="
-                                                    background: #fef3c7;
-                                                    color: #92400e;
-                                                    padding: 10px;
-                                                    border-radius: 6px;
-                                                    margin-bottom: 15px;
-                                                ">
-                                            
-                                            <ul style="margin:0; padding-left:20px;">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
 
                                     @if (session('success'))
                                         <div style="color:green">
@@ -110,8 +99,8 @@
 
                                     <div class="col-12">
                                         <div class="text-center">
-                                            <p class="mb-0">Dont't have an account ? <a href="/register"
-                                                    class="text-warning">Sign Up</a></p>
+                                            <p class="mb-0">Belum punya akun ? ya daftar lah -> <a href="/register"
+                                                    class="text-warning">Daftar </a></p>
                                         </div>
                                     </div>
 

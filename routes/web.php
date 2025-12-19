@@ -5,9 +5,9 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\AuthController;
 
 
-Route::get('/fajar', function () {
-    return view('fajar');
-});
+Route::get('/', function () {
+    return view('welcome');
+})->name('utama');
 
 
 //Route untuk menu login dan register
