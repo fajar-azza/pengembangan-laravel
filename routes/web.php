@@ -42,8 +42,10 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     
     });
     
+    //Route untuk autentikasi Role User
     Route::middleware(['auth', 'role:user'])
     ->prefix('user')
+    ->name('user.')
     ->group(function () {
         Route::get('dashboard', function () {
             return view('user.pages.dashboard');
