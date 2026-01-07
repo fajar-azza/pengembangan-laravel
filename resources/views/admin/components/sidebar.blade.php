@@ -61,7 +61,7 @@
                         <polyline points="2 17 12 22 22 17"></polyline>
                         <polyline points="2 12 12 17 22 12"></polyline>
                     </svg>
-                    <span>Tabel Dosen</span>
+                    <span>Data Loket</span>
                 </div>
             </a>
         </li>
