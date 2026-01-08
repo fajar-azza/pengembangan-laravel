@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DosenController;
+use App\Http\Controllers\LoketController;
 use App\Http\Controllers\AuthController;
 
 
@@ -33,12 +33,11 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
         return view('admin.pages.dashboard');
     })->name('dashboard');
 
-    Route::get('/dosen',[DosenController::class,'index'])->name('dosen');
-    Route::get('/formdosen',[DosenController::class,'create'])->name('form.dosen');
-    Route::post('/storeDosen',[DosenController::class,'store'])->name('store.dosen');
-    Route::get('/destroydosen/{id}',[DosenController::class,'destroy'])->name('destroy.dosen');
-    Route::get('/editdosen/{id}',[DosenController::class,'edit'])->name('edit.dosen');
-    Route::post('/updatedosen/{id}',[DosenController::class,'update'])->name('update.dosen');
+    Route::get('/dataloket',[LoketController::class,'index'])->name('loket');
+    Route::post('/databaruloket',[LoketController::class,'store'])->name('store.loket');
+    Route::get('/hapusdataloket/{id}',[LoketController::class,'destroy'])->name('destroy.loket');
+    Route::get('/editdataloket/{id}',[LoketController::class,'edit'])->name('edit.loket');
+    Route::post('/updatedataloket/{id}',[LoketController::class,'update'])->name('update.loket');
     
     });
     
