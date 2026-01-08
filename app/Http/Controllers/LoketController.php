@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Models\Loket;
 
 class LoketController extends Controller
 {
@@ -11,7 +12,8 @@ class LoketController extends Controller
      */
     public function index()
     {
-        //
+        $data=Loket::all();
+        return view ('admin.pages.loket',compact('data'));
     }
 
     /**
@@ -19,7 +21,7 @@ class LoketController extends Controller
      */
     public function create()
     {
-        //
+        //return view ('admin.pages.formdosen');
     }
 
     /**
@@ -27,7 +29,12 @@ class LoketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Loket::create([
+            'no_loket'=> $request->no_loket,
+            'dinas'=> $request->dinas,
+
+        ]);
+        return redirect()->route('admin.loket');
     }
 
     /**
@@ -43,7 +50,8 @@ class LoketController extends Controller
      */
     public function edit(string $id)
     {
-        //
+         $dataloket = Loket::find($id);
+        return view('admin.pages.loket',compact('dataloket'));
     }
 
     /**
@@ -51,7 +59,12 @@ class LoketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $dataloket = Loket::find($id);
+        $dataloket->no_loket = $request->no_loket;
+        $dataloket->dinas = $request->dinas;
+        $dataloket->save();
+
+        return redirect()->route('admin.loket');
     }
 
     /**
@@ -59,6 +72,9 @@ class LoketController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dataloket = Loket:: find($id);
+        $dataloket->delete();
+
+        return redirect()->route('admin.loket');
     }
 }

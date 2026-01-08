@@ -51,8 +51,8 @@
 
 
         <li class="menu ">
-            <a href="{{ route('admin.dosen') }}"
-                aria-expanded="{{ request()->routeIs('admin.dosen') ? 'true' : 'false' }}" class="dropdown-toggle">
+            <a href="{{ route('admin.loket') }}"
+                aria-expanded="{{ request()->routeIs('admin.loket') ? 'true' : 'false' }}" class="dropdown-toggle">
                 <div class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -66,7 +66,7 @@
             </a>
         </li>
 
-        <li class="menu">
+        {{-- <li class="menu">
             <a href="{{ route('admin.form.dosen') }}"
                 aria-expanded="{{ request()->routeIs('admin.form.dosen') ? 'true' : 'false' }}" class="dropdown-toggle">
                 <div class="">
@@ -80,7 +80,7 @@
                 </div>
             </a>
 
-        </li>
+        </li> --}}
 
     </ul>
 

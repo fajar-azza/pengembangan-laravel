@@ -55,8 +55,8 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
 
-                                        <h2>MASOKKK</h2>
-                                        <p>Pakai Email dan Password yaa say...</p>
+                                        <h2>LOGIN</h2>
+                                        <p>Gunakan Email dan Password</p>
 
                                     </div>
                                     @if ($errors->any())
@@ -99,7 +99,7 @@
 
                                     <div class="col-12">
                                         <div class="text-center">
-                                            <p class="mb-0">Belum punya akun ? ya daftar lah -> <a href="/register"
+                                            <p class="mb-0">-> <a href="/register"
                                                     class="text-warning">Daftar </a></p>
                                         </div>
                                     </div>
