@@ -48,7 +48,7 @@ class AuthController extends Controller
     // dibawah ini fungsi untuk membuat penambahan User
     public function registerpage()
     {
-        return view('auth.register');
+        return view('admin.loket');
     }
     public function register(Request $request)
     {
@@ -64,7 +64,7 @@ class AuthController extends Controller
         'email'=>$request->email,
         'password'=>hash::make($request->password)
     ]);
-    return redirect('/login')->with('success','Registrasi berhasil');
+    return redirect('/dashboard')->with('success','Registrasi berhasil');
 }
 
 }

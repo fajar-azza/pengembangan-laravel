@@ -39,6 +39,8 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/editdataloket/{id}',[LoketController::class,'edit'])->name('edit.loket');
     Route::post('/updatedataloket/{id}',[LoketController::class,'update'])->name('update.loket');
     
+    Route::get('/user',[UserController::class,'registerpage'])->name('register');
+    Route::post('/register',[UserController::class,'register'])->name('daftar');
     });
     
     //Route untuk autentikasi Role User
