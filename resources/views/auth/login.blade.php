@@ -97,12 +97,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12">
-                                        <div class="text-center">
-                                            <p class="mb-0">-> <a href="/register"
-                                                    class="text-warning">Daftar </a></p>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </form>
