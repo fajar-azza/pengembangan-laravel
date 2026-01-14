@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoketController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\UserController;
 
 
 Route::get('/', function () {
@@ -39,10 +40,12 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/editdataloket/{id}',[LoketController::class,'edit'])->name('edit.loket');
     Route::post('/updatedataloket/{id}',[LoketController::class,'update'])->name('update.loket');
     
-    Route::get('/user',[UserController::class,'registerpage'])->name('register');
-    Route::post('/register',[UserController::class,'register'])->name('daftar');
+    Route::get('/users',[UserController::class,'index']);
+    Route::post('/users/create',[UserController::class,'create']);
+    Route::post('/users',[UserController::class,'store']);   
     });
     
+
     //Route untuk autentikasi Role User
     Route::middleware(['auth', 'role:user'])
     ->prefix('user')

@@ -87,7 +87,7 @@
                                     <div class="col-12">
                                         <div class="mb-4">
                                             <label class="form-label">Password</label>
-                                            <input type="text" name="password" class="form-control">
+                                            <input type="password" name="password" class="form-control">
                                         </div>
                                     </div>
 
