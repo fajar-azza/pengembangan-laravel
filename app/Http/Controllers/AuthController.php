@@ -12,28 +12,30 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     //untuk menampilkan halaman Login Page
-    public function loginpage(){
+    public function loginpage()
+    {
         return view('auth.login');
     }
 
     //proses untuk Login kedalam Dashboard
     public function login(Request $request)
     {
-        $credentials=$request->validate([
-            'email'=>'required|email',
-            'password'=>'required'
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
-        if (Auth::attempt($credentials))
-        {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->role === 'admin'){
+            if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             }
-            return redirect()->route('user.dashboard');
+            if (Auth::user()->role === 'user') {
+                return redirect()->route('user.dashboard');
+            }
         }
         return back()->withErrors([
-            'email'=>'email atau password salah',
+            'email' => 'email atau password salah',
         ]);
     }
 
@@ -53,18 +55,17 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users',
-            'password'=>'required',
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
 
         ]);
-    
-    User::create([
-        'name'=>$request->name,
-        'email'=>$request->email,
-        'password'=>hash::make($request->password)
-    ]);
-    return redirect('/dashboard')->with('success','Registrasi berhasil');
-}
 
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => hash::make($request->password)
+        ]);
+        return redirect('/dashboard')->with('success', 'Registrasi berhasil');
+    }
 }
