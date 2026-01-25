@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 @section('content')
-    <div class="layout-px-spacing">
+
+<div class="layout-px-spacing">
 
         <div class="middle-content container-xxl p-0">
             <br>

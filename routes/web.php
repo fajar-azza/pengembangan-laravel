@@ -15,6 +15,7 @@ Route::get('/', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'loginpage'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+    
     Route::get('/register', [AuthController::class, 'registerpage']);
     Route::post('/register', [AuthController::class, 'register']);
 });
@@ -42,6 +43,15 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/user', [UserController::class, 'registerpage'])->name('register');
         Route::post('/register', [UserController::class, 'register'])->name('daftar');
+            Route::get('/tambah-user', function () {
+        return view('admin.pages.tambahuser');
+    })->name('tambah.user');
+    Route::get('/loket-aktif', function () {
+        return view('admin.pages.loketaktif');
+    })->name('loket.aktif');
+    Route::get('/rekap-absen', function () {
+        return view('admin.pages.rekapabsen');
+    })->name('rekap.absen');
     });
 
 //Route untuk autentikasi Role User
