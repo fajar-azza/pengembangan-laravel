@@ -1,21 +1,26 @@
 @extends('admin.layout.app')
 @section('content')
-
-<div class="layout-px-spacing">
-
+    <div class="layout-px-spacing">
         <div class="middle-content container-xxl p-0">
-            <br>
-            <br>
-
+            <!-- BREADCRUMB -->
+            <div class="page-meta">
+                <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Data</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Loket</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- /BREADCRUMB -->
+            <hr>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-
                     <div class="statbox widget box box-shadow">
                         <div class="widget-content widget-content-area">
-                            <div class="text-left">
-                                <button type="button" class="btn btn-primary mr-2" data-bs-toggle="modal"
+                            <div class="d-flex align-items-center px-3 mt-2 mb-3">
+                                <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
-                                    Tambah Data Baru
+                                    Tambah Data Loket
                                 </button>
                             </div>
                             <!-- Modal -->
@@ -24,7 +29,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Form Pengisian</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Data Loket</h5>
                                         </div>
                                         <div class="modal-body">
                                             <div
@@ -50,9 +55,9 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn btn-light-dark" data-bs-dismiss="modal"><i
-                                                    class="flaticon-cancel-12"></i> Discard</button>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                            <button class="btn btn btn-danger" data-bs-dismiss="modal"><i
+                                                    class="flaticon-cancel-12"></i>Batal</button>
+                                            <button type="submit" class="btn btn-success">Simpan</button>
                                         </div>
                                         </form>
                                     </div>
@@ -75,12 +80,13 @@
                                             <td>{{ $item->no_loket }}</td>
                                             <td>{{ $item->dinas }}</td>
                                             <td>
-                                                <a href="{{ route('admin.destroy.loket', $item->id) }}"><button
-                                                        class="btn btn-primary mb-2 me-4 _effect--ripple waves-effect waves-light">HAPUS</button></a>
-                                                <div class="text-left">
-                                                    <button type="button" class="btn btn-primary mr-2"
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <a href="{{ route('admin.destroy.loket', $item->id) }}"
+                                                        class="btn btn-primary me-4 _effect--ripple waves-effect waves-light">Hapus</button></a>
+
+                                                    <button type="button" class="btn btn-warning mr-2"
                                                         data-bs-toggle="modal" data-bs-target="#Modaledit">
-                                                        Edit Data
+                                                        Edit
                                                     </button>
                                                 </div>
                                                 <!-- Modal -->
@@ -89,8 +95,8 @@
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">ini edit
-                                                                    Pengisian</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel">Edit Data
+                                                                    Loket</h5>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div
@@ -111,7 +117,8 @@
                                                                                         class="form-control" required>
                                                                                 </div>
                                                                                 <div>
-                                                                                    <label for="t-text">Nama Dinas</label>
+                                                                                    <label for="t-text">Nama
+                                                                                        Dinas</label>
                                                                                     <input id="t-text" type="text"
                                                                                         name="dinas"
                                                                                         value="{{ $item->dinas }}"
@@ -125,11 +132,11 @@
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn btn btn-light-dark"
+                                                                <button class="btn btn btn-danger"
                                                                     data-bs-dismiss="modal"><i
-                                                                        class="flaticon-cancel-12"></i> Discard</button>
+                                                                        class="flaticon-cancel-12"></i>Batal</button>
                                                                 <button type="submit"
-                                                                    class="btn btn-primary">Simpan</button>
+                                                                    class="btn btn-success">Simpan</button>
                                                             </div>
                                                             </form>
                                                         </div>
@@ -143,9 +150,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 @endsection
