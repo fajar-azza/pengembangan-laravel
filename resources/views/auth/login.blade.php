@@ -45,10 +45,11 @@
                     <div class="card mt-3 mb-3">
                         <div class="card-body">
                             <div class="col-4">
-                                        <div class="mb-4">
-                                            <a href="{{route('utama')}}"><button type="submit" class="btn btn-secondary w-100">kembali</button></a>
-                                        </div>
-                                    </div>
+                                <div class="mb-4">
+                                    <a href="{{ route('utama') }}"><button type="submit"
+                                            class="btn btn-secondary w-100">kembali</button></a>
+                                </div>
+                            </div>
                             <form method="POST" action="">
                                 @csrf
 
@@ -87,7 +88,7 @@
                                     <div class="col-12">
                                         <div class="mb-4">
                                             <label class="form-label">Password</label>
-                                            <input type="text" name="password" class="form-control">
+                                            <input type="password" name="password" class="form-control">
                                         </div>
                                     </div>
 
