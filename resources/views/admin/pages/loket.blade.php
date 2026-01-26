@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 @section('content')
-    <div class="layout-px-spacing">
+
+<div class="layout-px-spacing">
 
         <div class="middle-content container-xxl p-0">
             <br>
@@ -40,7 +41,7 @@
                                                             <div>
                                                                 <label for="t-text">Nama Dinas</label>
                                                                 <input id="t-text" type="text" name="dinas"
-                                                                    placeholder="NIDN......" class="form-control" required>
+                                                                    placeholder="Dinas......" class="form-control" required>
                                                             </div>
                                                             <br>
                                                     </div>

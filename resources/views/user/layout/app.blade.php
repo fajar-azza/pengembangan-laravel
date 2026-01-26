@@ -1,27 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
- <!-- disini link untuk style -->
+    <!-- disini link untuk style -->
     @include('user.components.style')
     <!-- END PAGE LEVEL STYLES -->
 </head>
+
 <body class="layout-boxed ">
     <!-- BEGIN LOADER -->
-    <div id="load_screen"> <div class="loader"> <div class="loader-content">
-        <div class="spinner-grow align-self-center"></div>
-    </div></div></div>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
     <div class="header-container container-xxl">
         <!-- masukkan link header -->
-         @include('user.components.header')
+        @include('user.components.header')
     </div>
     <!--  END NAVBAR  -->
 
 
-    
+
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container " id="container">
 
@@ -33,30 +38,38 @@
         <div class="sidebar-wrapper sidebar-theme">
 
             <!-- masukkan sidebar -->
-             @include('user.components.sidebar')
+            @include('user.components.sidebar')
 
         </div>
         <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-            
-            <!-- masukkan main page  -->
-             @yield('content')
 
+            <!-- masukkan main page  -->
+            <div class="layout-px-spacing">
+
+                <div class="middle-content container-xxl p-0">
+
+                    @yield('content')
+
+                </div>
+
+            </div>
             <!--  BEGIN FOOTER  -->
 
             <!-- masukkan footer -->
-             @include('user.components.footer')
+            @include('user.components.footer')
 
             <!--  END CONTENT AREA  -->
         </div>
         <!--  END CONTENT AREA  -->
     </div>
     <!-- END MAIN CONTAINER -->
-    
+
     <!-- masukkan script -->
     @include('user.components.script')
-        
+
 </body>
+
 </html>

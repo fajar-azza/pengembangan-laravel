@@ -25,7 +25,8 @@
     <div class="shadow-bottom"></div>
     <ul class="list-unstyled menu-categories" id="accordionExample">
         <li class="menu">
-            <a href="{{route('user.dashboard')}}" aria-expanded="{{ request()->routeIs('user.dashboard') ? 'true' : 'false' }}" class="dropdown-toggle">
+            <a href="{{ route('user.dashboard') }}"
+                aria-expanded="{{ request()->routeIs('user.dashboard') ? 'true' : 'false' }}" class="dropdown-toggle">
                 <div class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -35,10 +36,11 @@
                     </svg>
                     <span>Dashboard</span>
                 </div>
-            </a>  
+            </a>
         </li>
         <li class="menu">
-            <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="{{ route('user.absensi') }}"
+                aria-expanded="{{ request()->routeIs('user.absensi') ? 'true' : 'false' }}" class="dropdown-toggle">
                 <div class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -48,9 +50,9 @@
                     </svg>
                     <span>Absensi</span>
                 </div>
-            </a>  
+            </a>
         </li>
-        
+
 
         <li class="menu menu-heading">
             <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
