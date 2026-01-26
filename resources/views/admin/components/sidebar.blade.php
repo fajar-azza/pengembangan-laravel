@@ -45,11 +45,8 @@
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="feather feather-minus">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg><span>FITUR</span></div>
+                </svg><span>Data</span></div>
         </li>
-
-
-
         <li class="menu ">
             <a href="{{ route('admin.loket') }}"
                 aria-expanded="{{ request()->routeIs('admin.loket') ? 'true' : 'false' }}" class="dropdown-toggle">

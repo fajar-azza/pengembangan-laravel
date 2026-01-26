@@ -41,7 +41,7 @@
                                                             <div>
                                                                 <label for="t-text">Nama Dinas</label>
                                                                 <input id="t-text" type="text" name="dinas"
-                                                                    placeholder="NIDN......" class="form-control" required>
+                                                                    placeholder="Dinas......" class="form-control" required>
                                                             </div>
                                                             <br>
                                                     </div>
