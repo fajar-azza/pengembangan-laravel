@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoketController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
-
+use App\Http\Controllers\PetugasController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,8 +52,15 @@ Route::middleware(['auth', 'role:admin'])
     Route::get('/rekap-absen', function () {
         return view('admin.pages.rekapabsen');
     })->name('rekap.absen');
+
+
+    Route::post('/petugas-store', [PetugasController::class, 'store'])
+    ->name('petugas.store');
     });
 
+
+
+    
 //Route untuk autentikasi Role User
 // command by atta : ini cara yang benar untuk pengunaan route itu coba cek seedeer dan AuthController oke?
 Route::middleware(['auth', 'role:user'])->group(function () {

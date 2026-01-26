@@ -26,7 +26,7 @@
                                                 class="col-xxl-12 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
                                                 <div class="card mt-3 mb-3">
                                                     <div class="card-body">
-                                                        <form action="{{ route('admin.store.loket') }}" method="post">
+                                                        <form action="{{ route('admin.petugas.store') }}" method="post">
                                                             @csrf
                                                             <div class="form-group">
                                                                 <label for="t-text">NIK</label>
@@ -39,10 +39,11 @@
                                                                     placeholder="Nama......" class="form-control" required>
                                                             </div>
                                                             <div>
-                                                                <label for="t-text">Nomor Loket</label>
-                                                                <input id="t-text" type="text" name="no-loket"
-                                                                    placeholder="No Loket......" class="form-control"
-                                                                    required>
+                                                                <select name="loket_id">
+                                                                    @foreach($loket as $l)
+                                                                        <option value="{{ $l->id }}">{{ $l->nama_loket }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                             <div>
                                                                 <label for="t-text">Username</label>
