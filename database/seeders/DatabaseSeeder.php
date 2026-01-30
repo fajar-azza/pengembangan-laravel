@@ -20,7 +20,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123'),
-            'role' => 'user',
+            'role' => 'admin',
+            //kok role itu varchar?
+        ]);
+        User::factory()->create([
+            'name' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('123'),
+            'role' => 'admin',
             //kok role itu varchar?
         ]);
     }
