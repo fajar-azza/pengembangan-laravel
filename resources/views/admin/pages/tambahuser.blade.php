@@ -1,7 +1,6 @@
 @extends('admin.layout.app')
 @section('content')
     <div class="row layout-top-spacing">
-
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
             <div class="widget-content widget-content-area br-8">
                 <div id="zero-config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -26,6 +25,7 @@
                                                 class="col-xxl-12 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
                                                 <div class="card mt-3 mb-3">
                                                     <div class="card-body">
+
                                                         <form action="{{ route('admin.petugas.store') }}" method="post">
                                                             @csrf
                                                             <div class="form-group">
@@ -35,19 +35,21 @@
                                                             </div>
                                                             <div>
                                                                 <label for="t-text">Nama Petugas</label>
-                                                                <input id="t-text" type="text" name="nama"
+                                                                <input id="t-text" type="text" name="nama_petugas"
                                                                     placeholder="Nama......" class="form-control" required>
                                                             </div>
                                                             <div>
+                                                                <label for="t-text">Nama Loket</label>
                                                                 <select name="loket_id">
-                                                                    @foreach($loket as $l)
-                                                                        <option value="{{ $l->id }}">{{ $l->nama_loket }}</option>
+                                                                    @foreach ($lokets as $loket)
+                                                                        <option value="{{ $loket->id }}">
+                                                                            {{ $loket->no_loket }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                             <div>
                                                                 <label for="t-text">Username</label>
-                                                                <input id="t-text" type="text" name="username"
+                                                                <input id="t-text" type="text" name="email"
                                                                     placeholder="Username......" class="form-control"
                                                                     required>
                                                             </div>
@@ -94,30 +96,92 @@
                                         style="width: 30px;">Loket </th>
                                     <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1"
                                         colspan="1" aria-label="Start date: activate to sort column ascending"
-                                        style="width: 77px;"></th>
+                                        style="width: 77px;">Aksi</th>
                                     <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1"
                                         colspan="1" aria-label="Salary: activate to sort column ascending"
-                                        style="width: 75px;">Aksi</th>
+                                        style="width: 75px;"></th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr role="row">
-                                    <td class="sorting_1">
-                                        <div class="d-flex">
-                                            <div class="usr-img-frame me-2 rounded-circle">
-                                                <img alt="avatar" class="img-fluid rounded-circle"
-                                                    src="../src/assets/img/girl-3.png">
+                                @foreach ($petugas as $item)
+                                    <tr role="row">
+
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nik }}</td>
+                                        <td>{{ $item->nama_petugas }}</td>
+                                        <td>{{ $item->loket_id }}</td>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <a href="{{ route('admin.destroy.petugas', $item->id) }}"
+                                                    class="btn btn-primary me-4 _effect--ripple waves-effect waves-light">Hapus</button></a>
+
+                                                <button type="button" class="btn btn-warning mr-2"
+                                                    data-bs-toggle="modal" data-bs-target="#PetugasEdit">
+                                                    Edit
+                                                </button>
                                             </div>
-                                            <p class="align-self-center mb-0 admin-name"> Haley </p>
-                                        </div>
-                                    </td>
-                                    <td>Senior Marketing Designer</td>
-                                    <td>London</td>
-                                    <td>43</td>
-                                    <td>2012/12/18</td>
-                                    <td>$313,500</td>
-                                </tr>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="PetugasEdit" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Edit Data
+                                                                Loket</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div
+                                                                class="col-xxl-12 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
+                                                                <div class="card mt-3 mb-3">
+                                                                    <div class="card-body">
+                                                                        <form action="{{ route('admin.update.petugas',$item->id) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            <div class="form-group">
+                                                                                <label for="t-text">NIK</label>
+                                                                                <input id="t-text" type="text"
+                                                                                    name="nik" 
+                                                                                    value="{{ $item->nik }}"
+                                                                                    placeholder="nik......"
+                                                                                    class="form-control" required>
+                                                                            </div>
+                                                                            <div>
+                                                                                <label for="t-text">Nama Petugas</label>
+                                                                                <input id="t-text" type="text"
+                                                                                    name="nama_petugas"
+                                                                                    value="{{ $item->nama_petugas }}"
+                                                                                    placeholder="Nama......"
+                                                                                    class="form-control" required>
+                                                                            </div>
+                                                                            <div>
+                                                                                <label for="t-text">Nama Loket</label>
+                                                                                <select name="loket_id">
+                                                                                    @foreach ($lokets as $loket)
+                                                                                        <option
+                                                                                            value="{{ $loket->id }}">
+                                                                                            {{ $loket->no_loket }}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                            <br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn btn-danger" data-bs-dismiss="modal"><i
+                                                                    class="flaticon-cancel-12"></i>Batal</button>
+                                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -125,8 +189,8 @@
                                     <th rowspan="1" colspan="1">Nik</th>
                                     <th rowspan="1" colspan="1">Nama Petugas</th>
                                     <th rowspan="1" colspan="1">Loket</th>
-                                    <th rowspan="1" colspan="1"></th>
                                     <th rowspan="1" colspan="1">Aksi</th>
+                                    <th rowspan="1" colspan="1"></th>
                                 </tr>
                             </tfoot>
                         </table>
