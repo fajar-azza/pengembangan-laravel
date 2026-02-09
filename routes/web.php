@@ -5,6 +5,8 @@ use App\Http\Controllers\LoketController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AdminRekapController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,7 +17,7 @@ Route::get('/', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'loginpage'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    
+
     Route::get('/register', [AuthController::class, 'registerpage']);
     Route::post('/register', [AuthController::class, 'register']);
 });
@@ -43,26 +45,31 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/user', [UserController::class, 'registerpage'])->name('register');
         Route::post('/register', [UserController::class, 'register'])->name('daftar');
-    
+
         Route::get('/loket-aktif', function () {
             return view('admin.pages.loketaktif');
         })->name('loket.aktif');
-        Route::get('/rekap-absen', function () {
-            return view('admin.pages.rekapabsen');
-        })->name('rekap.absen');
+        // Route::get('/rekap-absen', function () {
+        //     return view('admin.pages.rekapabsen');
+        // })->name('rekap.absen');
 
 
 
-    Route::get('/petugas-loket', [PetugasController::class, 'create'])->name('datapetugas');
-    Route::post('/petugas-store', [PetugasController::class, 'store'])
-    ->name('petugas.store');
-    Route::get('/hapus-data-Petugas/{id}', [PetugasController::class, 'destroy'])->name('destroy.petugas');
-    Route::post('/update-data-Petugas/{id}', [PetugasController::class, 'update'])->name('update.petugas');
+        Route::get('/petugas-loket', [PetugasController::class, 'create'])->name('datapetugas');
+        Route::post('/petugas-store', [PetugasController::class, 'store'])
+            ->name('petugas.store');
+        Route::get('/hapus-data-Petugas/{id}', [PetugasController::class, 'destroy'])->name('destroy.petugas');
+        Route::post('/update-data-Petugas/{id}', [PetugasController::class, 'update'])->name('update.petugas');
+
+        Route::get('/loket-aktif', [LoketController::class, 'loketaktif'])->name('loket.aktif');
+
+         Route::get('/rekap-absensi', [AdminRekapController::class, 'index'])
+            ->name('rekap.absen');
     });
 
 
 
-    
+
 //Route untuk autentikasi Role User
 // command by atta : ini cara yang benar untuk pengunaan route itu coba cek seedeer dan AuthController oke?
 Route::middleware(['auth', 'role:user'])->group(function () {
@@ -72,6 +79,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/absensi-user', function () {
         return view('user.pages.absensi');
     })->name('user.absensi');
+
+    Route::post('/absen/masuk', [AbsensiController::class, 'absenMasuk'])->name('absen.masuk');
+    ;
 });
-    
+
 // });

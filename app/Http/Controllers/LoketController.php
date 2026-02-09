@@ -77,4 +77,13 @@ class LoketController extends Controller
 
         return redirect()->route('admin.loket');
     }
+
+    public function loketaktif()
+{
+    $lokets = Loket::with([
+        'petugas.absensiHariIni'
+    ])->get();
+
+    return view('admin.pages.loketaktif', compact('lokets'));
+}
 }

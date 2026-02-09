@@ -29,4 +29,16 @@ class Petugas extends Model
     {
         return $this->belongsTo(Loket::class);
     }
+
+    public function absensis()
+    {
+        return $this->hasMany(Absensi::class, 'petugas_id', 'id');
+    }
+
+    public function absensiHariIni()
+    {
+        return $this->hasOne(Absensi::class)
+            ->whereDate('tanggal', now()->toDateString());
+    }
+
 }

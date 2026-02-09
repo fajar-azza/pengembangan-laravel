@@ -1,7 +1,5 @@
 @extends('admin.layout.app')
 @section('content')
-
-
     <div class="row">
 
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -10,13 +8,13 @@
                     <div id="html5-extension_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                         <div class="dt--top-section">
                             <div class="row">
-                                
-                                
+
+
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table id="html5-extension" class="table dt-table-hover dataTable no-footer"
-                                style="width: 100%;" role="grid" aria-describedby="html5-extension_info">
+                            <table id="html5-extension" class="table dt-table-hover dataTable no-footer" style="width: 100%;"
+                                role="grid" aria-describedby="html5-extension_info">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="html5-extension"
@@ -41,13 +39,13 @@
                                         <th class="sorting" tabindex="0" aria-controls="html5-extension" rowspan="1"
                                             colspan="1" aria-label="Extn.: activate to sort column ascending"
                                             style="width: 38px;">Extn.</th>
-                                        <th class="sorting" tabindex="0" aria-controls="html5-extension"
-                                            rowspan="1" colspan="1"
-                                            aria-label="Avatar: activate to sort column ascending" style="width: 49px;">
+                                        <th class="sorting" tabindex="0" aria-controls="html5-extension" rowspan="1"
+                                            colspan="1" aria-label="Avatar: activate to sort column ascending"
+                                            style="width: 49px;">
                                             Avatar</th>
-                                        <th class="sorting" tabindex="0" aria-controls="html5-extension"
-                                            rowspan="1" colspan="1"
-                                            aria-label="Action: activate to sort column ascending" style="width: 92px;">
+                                        <th class="sorting" tabindex="0" aria-controls="html5-extension" rowspan="1"
+                                            colspan="1" aria-label="Action: activate to sort column ascending"
+                                            style="width: 92px;">
                                             Action</th>
                                     </tr>
                                 </thead>
@@ -95,13 +93,66 @@
                                             </div>
                                         </td>
                                     </tr>
-                                
+
                                 </tbody>
                             </table>
                         </div>
                         <div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
+                            <table class="table table-bordered table-sm">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Loket</th>
+                                        <th>Petugas</th>
 
-                            
+                                        @foreach ($hariKerja as $tanggal)
+                                            <th class="text-center">
+                                                {{ \Carbon\Carbon::parse($tanggal)->format('d') }}
+                                            </th>
+                                        @endforeach
+
+                                        <th class="text-center">Total</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach ($lokets as $loket)
+                                        @foreach ($loket->petugas as $petugas)
+                                            <tr>
+                                                <td>{{ $loket->no_loket }}</td>
+                                                <td>{{ $petugas->nama_petugas }}</td>
+
+                                                @php $totalHadir = 0; @endphp
+
+                                                @foreach ($hariKerja as $tanggal)
+                                                    @php
+                                                        $absen = $petugas->absensis->first(function ($a) use (
+                                                            $tanggal,
+                                                        ) {
+                                                            return $a->tanggal->toDateString() === $tanggal;
+                                                        });
+                                                    @endphp
+
+                                                    <td class="text-center">
+                                                        @if ($absen)
+                                                            <span class="text-success fw-bold">hadir</span>
+                                                            @php $totalHadir++; @endphp
+                                                        @else
+                                                            <span class="text-muted">–</span>
+                                                        @endif
+                                                    </td>
+                                                @endforeach
+
+                                                <td class="fw-bold text-center">
+                                                    {{ $totalHadir }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+
+
                         </div>
                     </div>
                 </div>
