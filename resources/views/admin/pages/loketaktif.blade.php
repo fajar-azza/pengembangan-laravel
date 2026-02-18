@@ -37,51 +37,64 @@
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="First Name: activate to sort column ascending"
-                                            style="width: 107px;">No</th>
+                                            style="width: 80px;">No</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="First Name: activate to sort column ascending"
-                                            style="width: 107px;">First Name</th>
+                                            style="width: 80px;">Loket</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="Last Name: activate to sort column ascending"
-                                            style="width: 104px;">Last Name</th>
+                                            style="width: 104px;">Nama Dinas</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="Email: activate to sort column ascending"
-                                            style="width: 177px;">Email</th>
+                                            style="width: 177px;">Jam Petugas</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="Mobile No.: activate to sort column ascending"
-                                            style="width: 130px;">Mobile No.</th>
-                                        <th class="text-center sorting" tabindex="0" aria-controls="style-2"
-                                            rowspan="1" colspan="1"
-                                            aria-label="Image: activate to sort column ascending" style="width: 64px;">Image
-                                        </th>
+                                            style="width: 130px;">Jam Masuk</th>
                                         <th class="text-center sorting" tabindex="0" aria-controls="style-2"
                                             rowspan="1" colspan="1"
                                             aria-label="Status: activate to sort column ascending" style="width: 103px;">
-                                            Status</th>
+                                            Jam keluar</th>
                                         <th class="text-center dt-no-sorting sorting" tabindex="0" aria-controls="style-2"
                                             rowspan="1" colspan="1"
                                             aria-label="Action: activate to sort column ascending" style="width: 68px;">
-                                            Action</th>
+                                            Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($lokets as $loket)
+                                        @php
+                                            $aktif = false;
+                                            $petugasAktif = null;
 
-                                    <tr role="row" class="odd">
-                                        <td>1</td>
-                                        <td>Jane</td>
-                                        <td>Lamb</td>
-                                        <td>johndoe@yahoo.com</td>
-                                        <td>555-555-5555</td>
-                                        <td class="text-center">
-                                            <span><img src="../src/assets/img/profile-9.jpeg"
-                                                    class="rounded-circle profile-img" alt="avatar"></span>
-                                        </td>
-                                        <td class="text-center"><span
-                                                class="shadow-none badge badge-primary">Approved</span></td>
-
-                                    </tr>
-
+                                            foreach ($loket->petugas as $petugas) {
+                                                if (
+                                                    $petugas->absensiHariIni &&
+                                                    $petugas->absensiHariIni->jam_masuk &&
+                                                    !$petugas->absensiHariIni->jam_pulang
+                                                ) {
+                                                    $aktif = true;
+                                                    $petugasAktif = $petugas;
+                                                    break;
+                                                }
+                                            }
+                                        @endphp
+                                        <tr role="row" class="odd">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $loket->no_loket }}</td>
+                                            <td>{{ $loket->dinas }}</td>
+                                            <td> {{ $aktif ? $petugasAktif->nama_petugas : '-' }}</td>
+                                            <td>{{ $aktif ? $petugasAktif->absensiHariIni->jam_masuk : '-' }}</td>
+                                            <td>jam keluar</td>
+                                            <td class="text-center">
+                                                @if ($aktif)
+                                                    <span class="badge bg-success">AKTIF</span>
+                                                @else
+                                                    <span class="badge bg-danger">TIDAK AKTIF</span>
+                                                @endif
+                                            </td>
+                                        </tr>
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                         <div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
@@ -119,6 +132,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
