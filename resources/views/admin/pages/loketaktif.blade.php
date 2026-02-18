@@ -37,27 +37,27 @@
                                     <tr role="row">
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="First Name: activate to sort column ascending"
-                                            style="width: 107px;">No</th>
+                                            style="width: 80px;">No</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="First Name: activate to sort column ascending"
-                                            style="width: 107px;">Loket</th>
+                                            style="width: 80px;">Loket</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="Last Name: activate to sort column ascending"
-                                            style="width: 104px;">Nama Petugas</th>
+                                            style="width: 104px;">Nama Dinas</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="Email: activate to sort column ascending"
-                                            style="width: 177px;">Jam Masuk</th>
+                                            style="width: 177px;">Jam Petugas</th>
                                         <th class="sorting" tabindex="0" aria-controls="style-2" rowspan="1"
                                             colspan="1" aria-label="Mobile No.: activate to sort column ascending"
-                                            style="width: 130px;">Jam Keluar</th>
+                                            style="width: 130px;">Jam Masuk</th>
                                         <th class="text-center sorting" tabindex="0" aria-controls="style-2"
                                             rowspan="1" colspan="1"
                                             aria-label="Status: activate to sort column ascending" style="width: 103px;">
-                                            Status</th>
+                                            Jam keluar</th>
                                         <th class="text-center dt-no-sorting sorting" tabindex="0" aria-controls="style-2"
                                             rowspan="1" colspan="1"
                                             aria-label="Action: activate to sort column ascending" style="width: 68px;">
-                                            Action</th>
+                                            Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,6 +81,7 @@
                                         <tr role="row" class="odd">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $loket->no_loket }}</td>
+                                            <td>{{ $loket->dinas }}</td>
                                             <td> {{ $aktif ? $petugasAktif->nama_petugas : '-' }}</td>
                                             <td>{{ $aktif ? $petugasAktif->absensiHariIni->jam_masuk : '-' }}</td>
                                             <td>jam keluar</td>

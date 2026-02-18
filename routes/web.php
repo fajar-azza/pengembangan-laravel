@@ -7,10 +7,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AdminRekapController;
+use App\Http\Controllers\LandingPageController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('utama');
+Route::get('/', [LandingPageController::class, 'index'])->name('utama');
 
 
 //Route untuk menu login dan register
@@ -49,9 +48,7 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/loket-aktif', function () {
             return view('admin.pages.loketaktif');
         })->name('loket.aktif');
-        // Route::get('/rekap-absen', function () {
-        //     return view('admin.pages.rekapabsen');
-        // })->name('rekap.absen');
+
 
 
 
@@ -63,8 +60,19 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/loket-aktif', [LoketController::class, 'loketaktif'])->name('loket.aktif');
 
-         Route::get('/rekap-absensi', [AdminRekapController::class, 'index'])
+        Route::get('/rekap-absensi', [AdminRekapController::class, 'index'])
             ->name('rekap.absen');
+
+        Route::get(
+            '/admin/absen/bulk-edit',
+            [AdminRekapController::class, 'edit']
+        )->name('absen.bulk.edit');
+
+        Route::post(
+            '/admin/absen/bulk-update',
+            [AdminRekapController::class, 'update']
+        )->name('absen.bulk.update');
+
     });
 
 
