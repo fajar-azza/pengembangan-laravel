@@ -501,13 +501,20 @@
 <div class="container mt-4">
     <div class="row">
         @foreach ($petugas as $p)
-            @php
-                $absenHariIni = $p->absensis->first();
-            @endphp
+           @php
+    $absenHariIni = $p->absensis()
+        ->whereDate('tanggal', today())
+        ->first();
+@endphp
 
             <div class="col-md-4 mb-4">
                 <div class="card shadow
-                    {{ $absenHariIni ? 'border-success' : 'border-danger' }}">
+@if ($absenHariIni && $absenHariIni->jam_pulang === null)
+    border-success
+@else
+    border-danger
+@endif
+">
                     
                     <div class="card-body">
                         <h5 class="card-title">{{ $p->nama_petugas }}</h5>
@@ -515,15 +522,15 @@
                             <strong>Loket:</strong> {{ $p->loket->no_loket ?? '-' }}
                         </p>
 
-                        @if ($absenHariIni)
-                            <span class="badge bg-success">
-                                Hadir
-                            </span>
-                        @else
-                            <span class="badge bg-danger">
-                                Belum Absen
-                            </span>
-                        @endif
+                        @if ($absenHariIni && $absenHariIni->jam_pulang === null)
+    <span class="badge bg-success">
+        Aktif
+    </span>
+@else
+    <span class="badge bg-danger">
+        Tidak Aktif
+    </span>
+@endif
                     </div>
 
                 </div>

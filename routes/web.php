@@ -8,6 +8,7 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AdminRekapController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('utama');
 
@@ -84,12 +85,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user-dashboard', function () {
         return view('user.pages.dashboard');
     })->name('user.dashboard');
-    Route::get('/absensi-user', function () {
-        return view('user.pages.absensi');
-    })->name('user.absensi');
+
+    Route::get('/user-absensi', [DashboardController::class, 'index'])
+    ->name('user.absensi');
+    Route::get('/riwayat-absen', [DashboardController::class, 'riwayat'])
+    ->name('absen.riwayat');
 
     Route::post('/absen/masuk', [AbsensiController::class, 'absenMasuk'])->name('absen.masuk');
-    ;
+    Route::post('/absen-pulang', [AbsensiController::class, 'absenPulang'])->name('absen.pulang');
 });
 
 // });

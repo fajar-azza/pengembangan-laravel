@@ -35,5 +35,36 @@ class AbsensiController extends Controller
 
         return back()->with('success', 'Absen masuk berhasil');
     }
+
+    public function absenPulang()
+{
+    $petugas = auth()->user()->petugas;
+
+    if (!$petugas) {
+        return back()->with('error', 'Akun ini tidak memiliki data petugas');
+    }
+
+    $today = now()->toDateString();
+
+    $absen = Absensi::where('petugas_id', $petugas->id)
+        ->where('tanggal', $today)
+        ->first();
+
+    // ❌ Belum absen masuk
+    if (!$absen) {
+        return back()->with('error', 'Anda belum absen masuk hari ini');
+    }
+
+    // ❌ Sudah absen pulang
+    if ($absen->jam_pulang) {
+        return back()->with('error', 'Anda sudah absen pulang hari ini');
+    }
+
+    $absen->update([
+        'jam_pulang' => now()->toTimeString(),
+    ]);
+
+    return back()->with('success', 'Absen pulang berhasil');
+}
 }
 

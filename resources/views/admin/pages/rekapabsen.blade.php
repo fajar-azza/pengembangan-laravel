@@ -56,7 +56,7 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>Loket</th>
-                                        <th>Petugas</th>
+                                        <th>Dinas</th>
 
                                         @foreach ($hariKerja as $tanggal)
                                             <th class="text-center">
